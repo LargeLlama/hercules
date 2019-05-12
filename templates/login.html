@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>test login</title>
+
+    </head>
+
+    <body>
+      {% set msgs = get_flashed_messages() %}
+      {% for each in msgs %}
+        {{each}}<br>
+      {% endfor %}
+      <a href="/register">Click here to register!</a>
+      <form action ="/auth" method="POST" >
+        <h4>
+          Username: <input type= "text" name="username" required><br><br>
+          Password: <input type= "password" name="password" required><br><br>
+          <input type="submit" value="Login">
+        </h4>
+      </form>
+    </body>
+
+</html>
