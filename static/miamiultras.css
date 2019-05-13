@@ -1,9 +1,9 @@
 .navbar {
-    background-color: #738290;
+    background-color: #A1B5D8;
 }
 
 .navlink {
-    color:#C2D8B9;
+    color:#738290;
 }
 
 .nav-item{
@@ -15,5 +15,13 @@ body {
 }
 
 #footer {
-    color:#C2D8B9;
+    color:#738290;
+}
+
+.form {
+    margin-top:10%;
+    margin-left:37.5%;
+    margin-right:37.5%
+    text-align:center;
+    width:25%;
 }
