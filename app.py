@@ -68,6 +68,11 @@ def logout():
     session.pop("id")
     return redirect(url_for("home"))
 
+@app.route("/calendar")
+def cal():
+    return render_template("calendar.html")
+
+
 
 if __name__ == "__main__":
     app.debug = True
