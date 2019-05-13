@@ -10,14 +10,12 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(32)
 
-user_data = db.get_all_user_data()
-
 def is_logged_in():
     return "id" in session
 
 @app.route("/")
 def home():
-    if(is_logged_in()):
+    if( is_logged_in() ):
         return render_template("home.html")
     else:
         return render_template("login.html")
@@ -25,9 +23,11 @@ def home():
 
 @app.route("/auth" , methods = ["POST"])
 def authenticate():
+    '''Checks if the username and password entered match what's on file'''
     user_data = db.get_all_user_data()
     username = request.form.get("username")
     password = request.form.get("password")
+
     if username in user_data:
         if md5_crypt.verify(password, user_data[username]):
             id = db.get_user_id(username)
@@ -71,11 +71,6 @@ def logout():
 @app.route("/calendar")
 def cal():
     return render_template("calendar.html")
-
-@app.route("/lol", methods=["GET"])
-def lol():
-    return render_template("home.html")
-
 
 if __name__ == "__main__":
     app.debug = True

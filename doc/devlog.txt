@@ -25,6 +25,12 @@ huiminW -- 2019-05-08 13:53
 --------------------------------------------------------------
 - Added requirements.txt
 ==============================================================
+peterC -- 2019-05-11 12:00
+- Added database functionality with login, works as expected
+==============================================================
+huiminW -- 2019-05-13 13:10
+- Added calendar javascript, where you can click on a cell and get the date entered
+==============================================================
 huiminW -- 2019-05-13 13:35
 --------------------------------------------------------------
 - Added working calender + css
