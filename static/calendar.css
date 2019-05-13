@@ -1,0 +1,14 @@
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+    border: solid 2px #grey;
+    transition: border-width 0.5s ease-in-out;
+}
+
+td:hover {
+    background-color: #A1B5d8;
+    border-width: 5px; 
+}
