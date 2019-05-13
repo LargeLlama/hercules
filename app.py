@@ -68,6 +68,10 @@ def logout():
     session.pop("id")
     return redirect(url_for("home"))
 
+@app.route("/calendar")
+def cal():
+    return render_template("calendar.html")
+
 @app.route("/lol", methods=["GET"])
 def lol():
     return render_template("home.html")
