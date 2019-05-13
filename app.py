@@ -18,7 +18,7 @@ def is_logged_in():
 @app.route("/")
 def home():
     if(is_logged_in()):
-        return "you logged in congratulations it works kinda maybe"
+        return render_template("home.html")
     else:
         return render_template("login.html")
 
@@ -72,6 +72,9 @@ def logout():
 def cal():
     return render_template("calendar.html")
 
+@app.route("/lol", methods=["GET"])
+def lol():
+    return render_template("home.html")
 
 
 if __name__ == "__main__":
