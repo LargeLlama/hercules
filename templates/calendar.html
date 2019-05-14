@@ -25,7 +25,7 @@ Calendar
             <tr>
                 {% for day in row %}
                     {% if day %}
-                        <td value={{day}}> {{day}} </td>
+                    <td id="{{day}}-{{month}}-{{year}}"> {{day}} </td>
                     {% else %}
                         <td></td>
                     {% endif %}
