@@ -1,7 +1,9 @@
 import os
 import sqlite3
+import calendar
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
+from datetime import datetime
 from passlib.hash import md5_crypt
 
 from util import dbCommands as db
@@ -70,7 +72,11 @@ def logout():
 
 @app.route("/calendar")
 def cal():
-    return render_template("calendar.html")
+    curr_month = datetime.now().month
+    curr_year = datetime.now().year
+    curr_table = calendar.monthcalendar(curr_year, curr_month)
+    month_name = calendar.month_abbr[curr_month]
+    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
 
 if __name__ == "__main__":
     app.debug = True

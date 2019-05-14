@@ -36,3 +36,9 @@ huiminW -- 2019-05-13 13:35
 - Added working calender + css
 - When you click on a cell of the calendar, it prints out the date
 ==============================================================
+huiminW -- 2019-05-14 0:58
+--------------------------------------------------------------
+- Added dynamically responding calendar so it update in realtime
+  with month changing
+- Changed theme of calendar
+==============================================================
