@@ -1,0 +1,9 @@
+td.home {
+    text-align: center;
+}
+
+td.time {
+    line-height: 120px;
+    height: 150px;
+    font-size: 4rem;
+}
