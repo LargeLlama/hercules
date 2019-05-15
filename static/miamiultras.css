@@ -16,6 +16,11 @@ body {
 
 #footer {
     color:#738290;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:30px;
+    text-align:right;
 }
 
 .form {
@@ -57,4 +62,9 @@ a:hover {
 a:visited {
     color:#738290;
 }
+
+.flash{
+    color:#FF6B6C;
+}
+
     
