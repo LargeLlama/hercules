@@ -12,6 +12,11 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(32)
 
+#the following is for the ajax timer
+curr_hr = datetime.now().hour
+curr_min = datetime.now().minute
+curr_sec = datetime.now().second
+
 def is_logged_in():
     return "id" in session
 
