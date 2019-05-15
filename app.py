@@ -78,6 +78,9 @@ def cal():
     month_name = calendar.month_abbr[curr_month]
     return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
 
+@app.route("/templates")
+def templates():
+    return render_template("template.html")
 if __name__ == "__main__":
     app.debug = True
     app.run()

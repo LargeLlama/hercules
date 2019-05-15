@@ -21,6 +21,7 @@ body {
     width:100%;
     height:30px;
     text-align:right;
+    background-color:#A1B5D8;
 }
 
 .form {
@@ -38,7 +39,7 @@ body {
     background-color:white;
 }
 
-button {
+#button {
     display:inline-block;
 }
 
@@ -66,5 +67,13 @@ a:visited {
 .flash{
     color:#FF6B6C;
 }
+
+#template-button {
+    display:inline;
+    float:right;
+    text-align:center;
+    width:50%;
+}
+
 
     
