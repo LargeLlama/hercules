@@ -81,6 +81,8 @@ def cal():
 
 @app.route("/templates")
 def templates():
+    username = session["username"]
+    
     return render_template("template.html")
 if __name__ == "__main__":
     app.debug = True
