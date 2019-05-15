@@ -45,3 +45,16 @@ button {
 .btn:hover{
     background-color:#A1B5D8;
 }
+
+a {
+    color:#738290;
+}
+
+a:hover {
+    color:#738290;
+}
+
+a:visited {
+    color:#738290;
+}
+    
