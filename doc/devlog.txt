@@ -60,3 +60,8 @@ huiminW -- 2019-05-15 13:57
 --------------------------------------------------------------
 - Add countdown table
 ==============================================================
+rubinP -- 2019-05-15 13:50
+--------------------------------------------------------------
+- Got permission to use calendar, datetime, and passlib from Mr. Brown
+- Establish what database schema we are using to store templates
+==============================================================
