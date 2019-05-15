@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
+{% extends 'login.html' %}
+{% block content %}
+{% set msgs = get_flashed_messages() %}
+{% for each in msgs %}
+{{each}}
+{% endfor %}
+<form class="form" action="/registerAuth" method="POST" >
+  <div class="form-group">
+    <input type="username" class="form-control" name="username" placeholder="username">
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" name="password" placeholder="password">
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" name="password2" placeholder="confirm password">
+  </div>
+  <div id="button">
+    <input type="submit" class="btn btn-primary" value="Sign Up">
+  </div>
+  <br>
+  <a href="/">Back to login!</a>
+</form>
 
-        <title>test login</title>
-
-    </head>
-
-    <body>
-      {% set msgs = get_flashed_messages() %}
-      {% for each in msgs %}
-        {{each}}<br>
-      {% endfor %}
-      <form action ="/registerAuth" method="POST" >
-          <h3>
-            Username: <input type= "text" name="username" placeholder="At least 4 characters" required><br><br>
-            Password: <input type= "password" name="password" required><br><br>
-            Enter Password Again: <input type= "password" name="password2" required><br><br>
-            <input type="submit" name="signup" value="Sign Up">
-        </h3>
-      </form>
-      <form action ="/">
-        <input type="submit" value="Back to Login">
-      </form>
-    </body>
-
-</html>
+{% endblock %}
