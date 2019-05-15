@@ -8,6 +8,7 @@ from passlib.hash import md5_crypt
 
 from util import dbCommands as db
 
+
 app = Flask(__name__)
 
 app.secret_key = os.urandom(32)
