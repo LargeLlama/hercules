@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+Templates
+{% endblock %}
+{% block content %}
+<div class="templates">
+{% for template in templates %}
+{{template}}
+{% endfor %}
+</div>
+<div id="template-button">
+<form action="/create" method="POST">
+  <div id="button">
+    <input type="submit" class="btn btn-primary" value="Create a New Template">
+  </div>
+</form>
+</div>
+  <br>
+{% endblock %}
