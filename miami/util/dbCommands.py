@@ -1,6 +1,6 @@
 #util commands for messing with the database
 import sqlite3
-DB_FILE ="/var/www/miami/data/data.db"
+DB_FILE ="/var/www/miami/miami/data.db"
 #----------------when you want to add data to the database------------------------------
 #adds to the users table
 def add_user(username,password_hash):
