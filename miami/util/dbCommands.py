@@ -1,6 +1,6 @@
 #util commands for messing with the database
 import sqlite3
-DB_FILE ="/var/www/miami/miami/data/data.db"
+DB_FILE ="/var/www/miami/data/data.db"
 #----------------when you want to add data to the database------------------------------
 #adds to the users table
 def add_user(username,password_hash):
@@ -86,20 +86,17 @@ def get_all_templates(user_id):
     '''gets all individual template namses from the templates table based on id of user'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT name FROM templates WHERE user_id = ?;"
-    c.execute(command,(user_id,))
+    command = "SELECT name,task,start_time,end_time FROM templates WHERE user_id = ?;"
+    c.execute(command,(user_id))
     templates = c.fetchall()
     db.close()
-    print(templates)
-    '''
     #should return as a list of tuples
     names = []
     for each in templates:
         if each[0] not in names:
             names.append(each[0])
     #list of names of each template for a user
-    '''
-    return templates
+    return names
 
 
 def get_template_from_date(user_id,date):
