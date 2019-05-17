@@ -52,6 +52,11 @@ body {
     background-color:#A1B5D8;
 }
 
+.btn:active{
+    background-color:#A1B5D8
+}
+    
+
 a {
     color:#738290;
 }
@@ -68,7 +73,6 @@ a:visited {
     color:#FF6B6C;
 }
 
-<<<<<<< HEAD
 #template-button {
     display:inline;
     float:right;
@@ -76,7 +80,14 @@ a:visited {
     width:50%;
 }
 
+.container {
+    text-align:center;
+}
 
-    
-=======
->>>>>>> 8a28968de1ba93e838baf2fab98f3624511633ca
+td,th,table {
+    border:2px solid;
+    border-color: black;
+}
+
+
+
