@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<form class="template" action="/templates" method="POST">
+  <div class="container">
+  <table class="table" id="temp">
+    <tr>
+      <td colspan="3">
+	<input type="text" name="username" placeholder="template name" style="width:50%; text-align:center;">
+      </td>
+    </tr>
+    <tr>
+      <th style="width:50%">
+	Task Name
+      </th>
+      <th style="width:25%">
+	Start Time
+      </th>
+      <th style="width:25%">
+	End Time
+      </th>
+    </tr>
+  </table>
+  <button type="submit" class="btn btn-primary"> Create </button>
+</form>
+<button type="button" class="btn btn-primary" id="add"> Add a task </button>
+</div>
+{% endblock %}
+{% block js %}
+<script src="static/template.js"> </script>
+{% endblock %}
