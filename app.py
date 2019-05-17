@@ -35,7 +35,7 @@ def authenticate():
     user_data = db.get_all_user_data()
     username = request.form.get("username")
     password = request.form.get("password")
-    session["username"] = username
+
     if username in user_data:
         if md5_crypt.verify(password, user_data[username]):
             id = db.get_user_id(username)
@@ -86,13 +86,9 @@ def cal():
 
 @app.route("/templates")
 def templates():
-    userId = session["id"]
-    template = db.get_all_templates("userId")
-    return render_template("template.html", templates = template)
-
-@app.route("/create",methods=["POST"])
-def create():
-    return render_template("create.html")
+    username = session["username"]
+    
+    return render_template("template.html")
 if __name__ == "__main__":
     app.debug = True
     app.run()
