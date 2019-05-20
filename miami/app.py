@@ -11,7 +11,7 @@ from util import dbCommands as db
 
 app = Flask(__name__)
 
-app.secret_key = os.urandom(32)
+app.secret_key = "\x16\xc6w\x1c.!-\xb5\x15\x82u\xbe\x01\xc5?[\x18\n~\x891_\xa3\x9a}\xe6\x13\xea~\xc1\x92\xb8"
 
 #the following is for the ajax timer
 curr_hr = datetime.now().hour
