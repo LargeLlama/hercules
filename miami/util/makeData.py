@@ -1,6 +1,6 @@
 import sqlite3
 
-db = sqlite3.connect("/var/www/miami/miami/data/data.db")
+db = sqlite3.connect("data/data.db")
 c = db.cursor()
 #create users
 command = "CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT UNIQUE,password_hash TEXT)"

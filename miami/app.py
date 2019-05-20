@@ -96,4 +96,4 @@ def create():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host='142.93.206.174')
+    app.run()
