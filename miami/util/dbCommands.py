@@ -82,21 +82,16 @@ def get_template(user_id,name):
     #should return as a list of tuples
     return template
 
+'''
 def get_all_templates(user_id):
-    '''gets all individual template namses from the templates table based on id of user'''
+    #gets all individual template namses from the templates table based on id of user
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT name,task,start_time,end_time FROM templates WHERE user_id = ?;"
-    c.execute(command,(user_id))
+    command = "SELECT name WHERE user_id = ?;"
+    c.execute(command,(user_id,))
     templates = c.fetchall()
-    db.close()
-    #should return as a list of tuples
-    names = []
-    for each in templates:
-        if each[0] not in names:
-            names.append(each[0])
-    #list of names of each template for a user
-    return names
+    return templates
+'''
 
 
 def get_template_from_date(user_id,date):

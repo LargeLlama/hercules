@@ -87,10 +87,10 @@ def cal():
 @app.route("/templates")
 def templates():
     userId = session["id"]
-    template = db.get_all_templates("userId")
-    return render_template("template.html", templates = template)
+    #template = db.get_all_templates("userId")
+    return render_template("template.html")
 
-@app.route("/create",methods=["POST"])
+@app.route("/create",methods=["POST","GET"])
 def create():
     return render_template("create.html")
 
