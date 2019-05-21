@@ -89,4 +89,8 @@ addisonH -- 2019-05-21 13:50
 - did the javascript behind create.html
 - did the css
 ==============================================================
-
+huiminW -- 2019-05-21 14:13
+--------------------------------------------------------------
+- Formatted returned data from table form to connect with
+  dbCommands.py
+==============================================================
