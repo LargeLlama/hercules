@@ -70,3 +70,8 @@ huiminW -- 2019-05-17 14:27
 - Get the app properly working on a droplet, with the database
   in the right location and functioning
 ==============================================================
+peterC -- 2019-05-21 13:36
+- Functionality for a bunch of DB commands added + fixed some issues
+more streamlining to come
+==============================================================
+
