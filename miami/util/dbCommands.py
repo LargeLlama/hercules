@@ -30,6 +30,11 @@ def add_template(user_id,name,task,start_time,end_time):
     db.commit()
     db.close()
 
+#given a list of tuples itll add all of em to the table
+def add_All_to_template(list):
+    '''adds every line of a template to the templates table given a list of tuples'''
+    for each in list:
+        add_template(each[0],each[1],each[2],each[3],each[4])
 
 #--------------------useful for logins---------------------------
 #returns username password combo in a dict in the format username:password
@@ -82,16 +87,17 @@ def get_template(user_id,name):
     #should return as a list of tuples
     return template
 
-'''
+
+
 def get_all_templates(user_id):
     #gets all individual template namses from the templates table based on id of user
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT name WHERE user_id = ?;"
+    command = "SELECT name FROM templates WHERE user_id = ?;"
     c.execute(command,(user_id,))
     templates = c.fetchall()
     return templates
-'''
+
 
 
 def get_template_from_date(user_id,date):
