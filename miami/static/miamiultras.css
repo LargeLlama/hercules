@@ -86,6 +86,7 @@ a:visited {
 td,th,table {
     border:2px solid;
     border-color: black;
+    text-align:center;
 }
 
 .center {
