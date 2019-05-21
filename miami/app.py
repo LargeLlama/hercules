@@ -86,11 +86,11 @@ def cal():
 
 @app.route("/templates", methods=["POST", "GET"])
 def templates():
-    user = session["id"]
-    names = db.get_all_templates(user)
+    userId=session["id"]
+    names = db.get_all_templates(userId)
+    print(userId)
     print(names)
     if request.method == 'POST':
-        l = request.form
         name = request.form["username"]
         task = request.form.getlist("task")
         start = request.form.getlist("start")
@@ -98,11 +98,13 @@ def templates():
         counter = 0
         lists = []
         while counter < len(task):
-            lists.append([name, task[counter], start[counter], end[counter]])
+            lists.append([userId, name, task[counter], start[counter], end[counter]])
             counter += 1
+        db.add_All_to_template(lists)
+        names = db.get_all_templates(userId)
         return render_template("template.html",templates = names)
     else:
-        return render_template("template.html")
+        return render_template("template.html",templates=names)
 
 @app.route("/create",methods=["POST","GET"])
 def create():
