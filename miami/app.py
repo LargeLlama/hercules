@@ -87,12 +87,18 @@ def cal():
 @app.route("/templates", methods=["POST", "GET"])
 def templates():
     if request.method == 'POST':
-        name = "yur"
-        task = request.form["task"]
-        start = request.form["start"]
-        end = request.form["end"]
-        print(name, task, start, end)
-        return render_template("create.html")
+        l = request.form
+        name = request.form["username"]
+        task = request.form.getlist("task")
+        start = request.form.getlist("start")
+        end = request.form.getlist("end")
+        counter = 0
+        lists = []
+        while counter < len(task):
+            lists.append([name, task[counter], start[counter], end[counter]])
+            counter += 1
+        print(lists)
+        return redirect(url_for("create"))
     else:
         return render_template("create.html")
     #userId = session["id"]
