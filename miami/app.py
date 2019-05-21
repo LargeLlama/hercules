@@ -84,11 +84,20 @@ def cal():
     month_name = calendar.month_abbr[curr_month]
     return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
 
-@app.route("/templates")
+@app.route("/templates", methods=["POST", "GET"])
 def templates():
-    userId = session["id"]
-    #template = db.get_all_templates("userId")
-    return render_template("template.html")
+    if request.method == 'POST':
+        name = "yur"
+        task = request.form["task"]
+        start = request.form["start"]
+        end = request.form["end"]
+        print(name, task, start, end)
+        return render_template("create.html")
+    else:
+        return render_template("create.html")
+    #userId = session["id"]
+    ##template = db.get_all_templates("userId")
+    #return render_template("template.html")
 
 @app.route("/create",methods=["POST","GET"])
 def create():
