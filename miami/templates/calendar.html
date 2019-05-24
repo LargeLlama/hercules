@@ -25,7 +25,7 @@ Calendar
             <tr>
                 {% for day in row %}
                     {% if day %}
-                    <td class="calendar" id="{{day}}-{{month}}-{{year}}"> {{day}} </td>
+                    <td class="calendar" id="{{day}}-{{month}}-{{year}}"> {{day}} <br> <br> </td>
                     {% else %}
                         <td></td>
                     {% endif %}
@@ -36,4 +36,5 @@ Calendar
 </table>
 </div>
 <script src="static/calendar.js"></script>
+
 {% endblock %}

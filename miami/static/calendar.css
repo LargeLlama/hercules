@@ -3,8 +3,12 @@ th {
 }
 
 td.calendar {
-    text-align: center;
-    border: solid 2px #grey;
+    border: solid 1px #grey;
+    border-top-width: 0px;
+    border-left-width: 2px;
+    text-align: left;
+    padding-top: 0px;
+    padding-left: 3px;
     transition: border-width 0.5s ease-in-out;
 }
 

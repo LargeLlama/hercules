@@ -94,3 +94,9 @@ huiminW -- 2019-05-21 14:13
 - Formatted returned data from table form to connect with
   dbCommands.py
 ==============================================================
+huiminW -- 2019-05-24 13:32
+--------------------------------------------------------------
+- Formatted date of calendar to be on the top left corner
+- With every click on a cell on the calendar page, it accumulates
+  the date
+==============================================================
