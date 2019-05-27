@@ -76,6 +76,26 @@ def logout():
     session.pop("id")
     return redirect(url_for("home"))
 
+@app.route("/submit_form",methods=["POST","GET"])
+def sub_cal():
+    curr_month = datetime.now().month
+    curr_year = datetime.now().year
+    curr_table = calendar.monthcalendar(curr_year, curr_month)
+    month_name = calendar.month_abbr[curr_month]
+    if request.method == 'POST':
+        userId=session["id"]
+        print(request.form)
+        name = request.form["tempname"]
+        dates = request.form.getlist("selected")
+        print(dates)
+        counter = 0
+        while counter < len(dates):
+            db.add_Calender(userId, dates[counter], name);
+            counter += 1
+        return render_template("calendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
+    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
+
+
 @app.route("/calendar",methods=["POST","GET"])
 def cal():
     curr_month = datetime.now().month
@@ -84,6 +104,7 @@ def cal():
     month_name = calendar.month_abbr[curr_month]
     if request.method == 'POST':
         userId=session["id"]
+        print(request.form)
         name = request.form["tempname"]
         task = request.form.getlist("task[]")
         start = request.form.getlist("start[]")

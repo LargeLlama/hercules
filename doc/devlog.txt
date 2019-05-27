@@ -100,3 +100,8 @@ huiminW -- 2019-05-24 13:32
 - With every click on a cell on the calendar page, it accumulates
   the date
 ==============================================================
+huiminW -- 2019-05-27 0:56
+--------------------------------------------------------------
+- Added functionality to apply templates to multiple dates and enter
+  that into the database.
+- Moved doc folder to the root repo as per Mr. Brown's request
