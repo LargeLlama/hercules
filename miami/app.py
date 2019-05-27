@@ -76,35 +76,34 @@ def logout():
     session.pop("id")
     return redirect(url_for("home"))
 
-@app.route("/calendar")
+@app.route("/calendar",methods=["POST","GET"])
 def cal():
     curr_month = datetime.now().month
     curr_year = datetime.now().year
     curr_table = calendar.monthcalendar(curr_year, curr_month)
     month_name = calendar.month_abbr[curr_month]
-    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
-
-@app.route("/templates", methods=["POST", "GET"])
-def templates():
-    userId=session["id"]
-    names = db.get_all_templates(userId)
-    print(userId)
-    print(names)
     if request.method == 'POST':
-        name = request.form["username"]
-        task = request.form.getlist("task")
-        start = request.form.getlist("start")
-        end = request.form.getlist("end")
+        userId=session["id"]
+        name = request.form["tempname"]
+        task = request.form.getlist("task[]")
+        start = request.form.getlist("start[]")
+        end = request.form.getlist("end[]")
+        print(task)
         counter = 0
         lists = []
         while counter < len(task):
             lists.append([userId, name, task[counter], start[counter], end[counter]])
             counter += 1
         db.add_All_to_template(lists)
-        names = db.get_all_templates(userId)
-        return render_template("template.html",templates = names)
-    else:
-        return render_template("template.html",templates=names)
+        print(lists)
+        return render_template("calendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
+    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
+
+@app.route("/templates", methods=["POST", "GET"])
+def templates():
+    userId=session["id"]
+    names = db.get_all_templates(userId)
+    return render_template("template.html",templates=names)
 
 @app.route("/create",methods=["POST","GET"])
 def create():
