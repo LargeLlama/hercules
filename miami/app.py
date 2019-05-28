@@ -21,7 +21,7 @@ curr_sec = datetime.now().second
 def is_logged_in():
     return "id" in session
 
-@app.route("/")
+@app.route("/", methods = ["POST", "GET"])
 def home():
     if( is_logged_in() ):
         return render_template("home.html")
@@ -92,7 +92,7 @@ def sub_cal():
         while counter < len(dates):
             db.add_Calender(userId, dates[counter], name);
             counter += 1
-        return render_template("calendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
+        return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
     return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
 
 
@@ -117,7 +117,7 @@ def cal():
             counter += 1
         db.add_All_to_template(lists)
         print(lists)
-        return render_template("calendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
+        return render_template("calendar.html", month=month_name,year=curr_year,table=curr_table)
     return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
 
 @app.route("/templates", methods=["POST", "GET"])
