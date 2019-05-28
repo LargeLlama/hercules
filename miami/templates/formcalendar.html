@@ -4,6 +4,10 @@ Calendar
 {% endblock %}
 {% block content %}
 <div class="container">
+  {{template}}
+  <form method="POST" action="/">
+    <input type="hidden" value={{template}} name="tempname"> </input>
+    <input type="hidden" id="selected" name="selected"> </input>
 <table class="table table-dark table-bordered">
     <thead>
         <tr>
@@ -34,10 +38,12 @@ Calendar
         {% endfor %}
     </tbody>
 </table>
+<input type="submit" value="submit"> </input>
+</form>
 </div>
 {% endblock %}
 {% block js %}
-<script src="static/dispcalendar.js"></script>
+<script src="static/formcalendar.js"></script>
 {% endblock %}
 
 
