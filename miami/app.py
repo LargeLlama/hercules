@@ -104,12 +104,31 @@ def cal():
     month_name = calendar.month_abbr[curr_month]
     if request.method == 'POST':
         userId=session["id"]
-        print(request.form)
         name = request.form["tempname"]
         task = request.form.getlist("task[]")
         start = request.form.getlist("start[]")
         end = request.form.getlist("end[]")
-        print(task)
+        counter = 0
+        while counter < len(start):
+            if start[0] > end[0]:
+                flash("Start time can't be after end time!")
+                return redirect(url_for("create"))
+            counter +=1
+        tempS = start.copy()
+        tempS.sort()
+        tempE = end.copy()
+        tempE.sort()
+        print(start)
+        print(tempS)
+        if (start != tempS):
+            flash("Please sort your tasks in ascending order")
+            return redirect(url_for("create"))
+        counter = 0
+        while counter < len(tempE) -1:
+            if end[counter] > start[counter+1]:
+                flash("Tasks can't overlap!")
+                return redirect(url_for("create"))
+            counter +=1
         counter = 0
         lists = []
         while counter < len(task):
