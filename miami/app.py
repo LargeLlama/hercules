@@ -112,6 +112,17 @@ def cal():
     curr_year = datetime.now().year
     curr_table = calendar.monthcalendar(curr_year, curr_month)
     month_name = calendar.month_abbr[curr_month]
+    curr_year = str(curr_year)
+    nameDict = {}
+    for row in curr_table:
+        for day in row:
+            date = str(day) + "-" + month_name + "-" + curr_year
+            print(date)
+            if (db.get_template_from_date(userId,date)):
+                nameDict[date] = db.get_template_from_date(userId,date)
+    print("namedict:")
+    print(nameDict)
+
     if request.method == 'POST':
         userId=session["id"]
         name = request.form["tempname"]
@@ -148,9 +159,9 @@ def cal():
         db.add_All_to_template(lists)
         print(lists)
         dates = request.form.getlist("selected")
-        return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
+        return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name,dict = nameDict)
     #when you click on the calendar tab
-    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
+    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table, dict = nameDict)
 
 @app.route("/templates", methods=["POST", "GET"])
 def templates():
