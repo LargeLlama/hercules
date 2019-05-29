@@ -25,6 +25,14 @@ def is_logged_in():
 @app.route("/", methods = ["POST", "GET"])
 def home():
     if( is_logged_in() ):
+        userId = session["id"]
+        day = datetime.now().day
+        month = datetime.now().month
+        month_name = calendar.month_abbr[month]
+        year = datetime.now().year
+        date = str(day) + "-" + month_name + "-" + str(year)
+        template_stored = db.get_template_from_date(userId, date)
+        print(template_stored, template_stored)
         return render_template("home.html")
     else:
         return render_template("login.html")
