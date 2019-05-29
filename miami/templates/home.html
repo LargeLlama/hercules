@@ -4,7 +4,14 @@ Home
 {% endblock %}
 {% block content %}
 <div class="container">
+    {% set msgs = get_flashed_messages() %}
+    {% for each in msgs %}
+        {{each}}<br>
+    {% endfor %}
 <table class="table" style="float:left">
+    <tr>
+        <th scope="col" colspan="3"><em>{{month}}&nbsp;{{date}},&nbsp;{{year}}</em></th>
+    </tr>
     {% for row in task %}
   <tr>
     {% for col in row %}

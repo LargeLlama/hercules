@@ -110,3 +110,10 @@ huiminW -- 2019-05-28 13:50
 --------------------------------------------------------------
 - Separate form calendar from display calendar and change paths
   for when user selects dates
+==============================================================
+huiminW -- 2019-05-28 13:50
+--------------------------------------------------------------
+- Cleaned up calendar/template paths
+- Display schedule on homepage/flash no schedule msg if none
+- Cleaned up db command for returning template name
+- Fixed storage of times to be text and not int

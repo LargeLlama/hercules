@@ -32,8 +32,13 @@ def home():
         year = datetime.now().year
         date = str(day) + "-" + month_name + "-" + str(year)
         template_stored = db.get_template_from_date(userId, date)
-        print(template_stored, template_stored)
-        return render_template("home.html")
+        if template_stored:
+            template = db.get_template(userId, template_stored)
+            print("template_stored", template)
+            return render_template("home.html", task = template, month=month_name, date=day, year=year)
+        else:
+            flash("No template stored for " + date)
+            return render_template("home.html")
     else:
         return render_template("login.html")
 
@@ -94,32 +99,11 @@ def add_to_cal():
     print(dates)
     counter = 0
     while counter < len(dates):
-        print("Adding to Calender===================")
         db.add_Calender(userId, dates[counter], name)
         counter += 1
     return redirect(url_for("home"))
 
-@app.route("/submit_form",methods=["POST","GET"])
-def sub_cal():
-    curr_month = datetime.now().month
-    curr_year = datetime.now().year
-    curr_table = calendar.monthcalendar(curr_year, curr_month)
-    month_name = calendar.month_abbr[curr_month]
-    if request.method == 'POST':
-        userId=session["id"]
-        print(request.form)
-        name = request.form["tempname"]
-        dates = request.form.getlist("selected")
-        print(dates)
-        counter = 0
-        while counter < len(dates):
-            print("Adding to Calender===================")
-            db.add_Calender(userId, dates[counter], name)
-            counter += 1
-        return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
-    return render_template("formcalendar.html", month = month_name, year = curr_year, table = curr_table, template = name)
-
-
+#called when you submit a template
 @app.route("/calendar",methods=["POST","GET"])
 def cal():
     userId=session["id"]
@@ -157,12 +141,15 @@ def cal():
             counter +=1
         counter = 0
         lists = []
+        print("ADDING TO TEMPLATES")
         while counter < len(task):
             lists.append([userId, name, task[counter], start[counter], end[counter]])
             counter += 1
         db.add_All_to_template(lists)
         print(lists)
-        return render_template("calendar.html", month=month_name,year=curr_year,table=curr_table)
+        dates = request.form.getlist("selected")
+        return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
+    #when you click on the calendar tab
     return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
 
 @app.route("/templates", methods=["POST", "GET"])

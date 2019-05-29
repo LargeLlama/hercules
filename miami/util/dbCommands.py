@@ -105,8 +105,9 @@ def get_template_from_date(user_id,date):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     print(date)
-    command = "SELECT schedule_name FROM calender WHERE user_id = ? AND date = ?;"
-    c.execute(command,(user_id,date))
+    command = "SELECT schedule_name FROM calender WHERE user_id = ? AND date LIKE ?;"
+    date = "%" + date + "%"
+    c.execute(command,(user_id, date))
     name = c.fetchall()
     print("NAME", name)
     if name:

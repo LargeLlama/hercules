@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<form class="template" action="/submit_form" method="POST">
+<form class="template" action="/calendar" method="POST">
   <div class="container">
     {% set msgs = get_flashed_messages() %}
     {% for each in msgs %}
