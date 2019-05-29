@@ -5,6 +5,7 @@ import calendar
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 from datetime import datetime
 from passlib.hash import md5_crypt
+from sqlite3 import OperationalError
 
 from util import dbCommands as db
 
@@ -76,6 +77,20 @@ def logout():
     session.pop("id")
     return redirect(url_for("home"))
 
+@app.route("/add_to_cal", methods=["POST","GET"])
+def add_to_cal():
+    userId=session["id"]
+    print(request.form)
+    name = request.form["tempname"]
+    dates = request.form.getlist("selected")
+    print(dates)
+    counter = 0
+    while counter < len(dates):
+        print("Adding to Calender===================")
+        db.add_Calender(userId, dates[counter], name)
+        counter += 1
+    redirect(url_for("home"))
+
 @app.route("/submit_form",methods=["POST","GET"])
 def sub_cal():
     curr_month = datetime.now().month
@@ -90,34 +105,33 @@ def sub_cal():
         print(dates)
         counter = 0
         while counter < len(dates):
-            db.add_Calender(userId, dates[counter], name);
+            print("Adding to Calender===================")
+            db.add_Calender(userId, dates[counter], name)
             counter += 1
         return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
-    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
+    return render_template("formcalendar.html", month = month_name, year = curr_year, table = curr_table, template = name)
 
 
 @app.route("/calendar",methods=["POST","GET"])
 def cal():
+    userId=session["id"]
+    listotemps = []
     curr_month = datetime.now().month
     curr_year = datetime.now().year
     curr_table = calendar.monthcalendar(curr_year, curr_month)
     month_name = calendar.month_abbr[curr_month]
-    if request.method == 'POST':
-        userId=session["id"]
-        print(request.form)
-        name = request.form["tempname"]
-        task = request.form.getlist("task[]")
-        start = request.form.getlist("start[]")
-        end = request.form.getlist("end[]")
-        print(task)
-        counter = 0
-        lists = []
-        while counter < len(task):
-            lists.append([userId, name, task[counter], start[counter], end[counter]])
-            counter += 1
-        db.add_All_to_template(lists)
-        print(lists)
-        return render_template("calendar.html", month=month_name,year=curr_year,table=curr_table)
+    for row in curr_table:
+        for day in row: #returns dates
+            print("day", day)
+            date = str(day)+"-"+str(month_name)+"-"+str(curr_year)
+            print("date", date)
+            try:
+                temp = db.get_template_from_date(userId, date)
+                listotemps.append((date,temp))
+            except OperationalError:
+                print("No templates currently saved")
+            except:
+                print("No templates currently saved")
     return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
 
 @app.route("/templates", methods=["POST", "GET"])

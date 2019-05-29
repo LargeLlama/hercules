@@ -80,7 +80,7 @@ def get_template(user_id,name):
     '''gets a template from the template table based on id of user and name of template'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT task,start_time,end_time FROM templates WHERE user_id = ? AND name = ?;"
+    command = "SELECT task,start_time,end_time FROM templates WHERE user_id = ? AND schedule_name = ?;"
     c.execute(command,(user_id,name))
     template = c.fetchall()
     db.close()
@@ -104,7 +104,7 @@ def get_template_from_date(user_id,date):
     '''gets a template from the calender based on date given'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT name FROM calender WHERE user_id = ? AND date = ?;"
+    command = "SELECT schedule_name FROM calender WHERE user_id = ? AND date = ?;"
     c.execute(command,(user_id,date))
     name = c.fetchall()
     name = name[0][0]
