@@ -10,7 +10,9 @@
 
 2. Make sure you have Python 3.7.1 installed, if not, install from [here](https://www.python.org/downloads/)
 
-3. Install virtualenv by running $ pip install virtualenv 
+3. Install virtualenv by running 
+  
+      `$ pip install virtualenv`
 
   - Make a venv by running 
   
