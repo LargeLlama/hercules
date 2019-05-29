@@ -89,7 +89,7 @@ def add_to_cal():
         print("Adding to Calender===================")
         db.add_Calender(userId, dates[counter], name)
         counter += 1
-    redirect(url_for("home"))
+    return redirect(url_for("home"))
 
 @app.route("/submit_form",methods=["POST","GET"])
 def sub_cal():
@@ -120,18 +120,41 @@ def cal():
     curr_year = datetime.now().year
     curr_table = calendar.monthcalendar(curr_year, curr_month)
     month_name = calendar.month_abbr[curr_month]
-    for row in curr_table:
-        for day in row: #returns dates
-            print("day", day)
-            date = str(day)+"-"+str(month_name)+"-"+str(curr_year)
-            print("date", date)
-            try:
-                temp = db.get_template_from_date(userId, date)
-                listotemps.append((date,temp))
-            except OperationalError:
-                print("No templates currently saved")
-            except:
-                print("No templates currently saved")
+    if request.method == 'POST':
+        userId=session["id"]
+        name = request.form["tempname"]
+        task = request.form.getlist("task[]")
+        start = request.form.getlist("start[]")
+        end = request.form.getlist("end[]")
+        counter = 0
+        while counter < len(start):
+            if start[0] > end[0]:
+                flash("Start time can't be after end time!")
+                return redirect(url_for("create"))
+            counter +=1
+        tempS = start.copy()
+        tempS.sort()
+        tempE = end.copy()
+        tempE.sort()
+        print(start)
+        print(tempS)
+        if (start != tempS):
+            flash("Please sort your tasks in ascending order")
+            return redirect(url_for("create"))
+        counter = 0
+        while counter < len(tempE) -1:
+            if end[counter] > start[counter+1]:
+                flash("Tasks can't overlap!")
+                return redirect(url_for("create"))
+            counter +=1
+        counter = 0
+        lists = []
+        while counter < len(task):
+            lists.append([userId, name, task[counter], start[counter], end[counter]])
+            counter += 1
+        db.add_All_to_template(lists)
+        print(lists)
+        return render_template("calendar.html", month=month_name,year=curr_year,table=curr_table)
     return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
 
 @app.route("/templates", methods=["POST", "GET"])

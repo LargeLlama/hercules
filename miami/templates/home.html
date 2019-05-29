@@ -31,9 +31,12 @@ Home
             <td class="home"> minutes left </td>
         </tr>
         <tr>
-            <td class="home" colspan="2"> 99:99:99 </td>
+            <td class="home" colspan="2" id="timer"> 99:99:99 </td>
         </tr>
     </tbody>
 </table>
 </div>
+{% endblock %}
+{% block js %}
+<script src="static/timer.js"></script>
 {% endblock %}
