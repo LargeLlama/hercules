@@ -93,4 +93,15 @@ td,th,table {
     text-align:center;
 }
 
+.remove::after {
+    text-align:left;
+    display:inline;
+    font-size:20px;
+    content:'x';
+    float:left;
+    font-weight:300;
+    font-family: Arial, sans-serif;
+    color:#738290;
+}
+
 
