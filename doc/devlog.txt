@@ -100,6 +100,10 @@ huiminW -- 2019-05-24 13:32
 - With every click on a cell on the calendar page, it accumulates
   the date
 ==============================================================
+addisonH -- 2019-05-24 13:32
+--------------------------------------------------------------
+- connected the db with template submission
+==============================================================
 huiminW -- 2019-05-27 0:56
 --------------------------------------------------------------
 - Added functionality to apply templates to multiple dates and enter
@@ -110,3 +114,8 @@ huiminW -- 2019-05-28 13:50
 --------------------------------------------------------------
 - Separate form calendar from display calendar and change paths
   for when user selects dates
+==============================================================
+addisonH -- 2019-05-28 13:51
+--------------------------------------------------------------
+- Added flash messages so user is smart when creating their template
+
