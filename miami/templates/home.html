@@ -9,11 +9,16 @@ Home
         {{each}}<br>
     {% endfor %}
 <table class="table" style="float:left">
-    <tr>
-        <th scope="col" colspan="3"><em>{{month}}&nbsp;{{date}},&nbsp;{{year}}</em></th>
-    </tr>
+    {% if month is defined %}
+        <tr>
+            <th scope="col" colspan="4"><em>{{month}}&nbsp;{{date}},&nbsp;{{year}}</em></th>
+        </tr>
+    {% endif %}
     {% for row in task %}
   <tr>
+    <td>
+        {{ loop.index0 }}
+    </td>
     {% for col in row %}
     <td>
       {{col}}
