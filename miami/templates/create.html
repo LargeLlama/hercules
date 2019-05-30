@@ -3,7 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 {% endblock %}
 {% block content %}
-<form class="template" action="/submit_form" method="POST">
+<form class="template" action="/calendar" method="POST">
   <div class="container">
     {% set msgs = get_flashed_messages() %}
     {% for each in msgs %}

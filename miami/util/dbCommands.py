@@ -104,8 +104,13 @@ def get_template_from_date(user_id,date):
     '''gets a template from the calender based on date given'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT name FROM calender WHERE user_id = ? AND date = ?;"
-    c.execute(command,(user_id,date))
+    print(date)
+    command = "SELECT schedule_name FROM calender WHERE user_id = ? AND date LIKE ?;"
+    date = "%" + date + "%"
+    c.execute(command,(user_id, date))
     name = c.fetchall()
-    name = name[0][0]
-    return get_template(user_id,name)
+    print("NAME", name)
+    if name:
+        name = name[0][0]
+    return name
+

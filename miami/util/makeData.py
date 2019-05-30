@@ -9,7 +9,7 @@ c.execute(command)
 command = "CREATE TABLE calender(user_id INTEGER, date TEXT,schedule_name TEXT)"
 c.execute(command)
 #create templates
-command = "CREATE TABLE templates(user_id INTEGER,name TEXT,task TEXT,start_time INTEGER,end_time INTEGER)"
+command = "CREATE TABLE templates(user_id INTEGER,name TEXT,task TEXT,start_time TEXT,end_time TEXT)"
 c.execute(command)
 db.commit()
 db.close()

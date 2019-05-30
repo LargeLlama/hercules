@@ -5,7 +5,7 @@ Calendar
 {% block content %}
 <div class="container">
   {{template}}
-  <form method="POST" action="/">
+  <form method="POST" action="/add_to_cal">
     <input type="hidden" value={{template}} name="tempname"> </input>
     <input type="hidden" id="selected" name="selected"> </input>
 <table class="table table-dark table-bordered">
@@ -22,14 +22,16 @@ Calendar
             <th scope="col">Friday</th>
             <th scope="col">Saturday</th>
         </tr>
- 
+
     </thead>
     <tbody>
         {% for row in table %}
             <tr>
                 {% for day in row %}
                     {% if day %}
-                    <td class="calendar" id="{{day}}-{{month}}-{{year}}"> {{day}} <br> <br> </td>
+                    <td class="calendar" id="{{day}}-{{month}}-{{year}}"> {{day}}
+                      {{dict[day|string + "-" + month + "-" + year]}}
+                      <br> <br> </td>
                     {% else %}
                         <td></td>
                     {% endif %}
@@ -45,5 +47,3 @@ Calendar
 {% block js %}
 <script src="static/formcalendar.js"></script>
 {% endblock %}
-
-

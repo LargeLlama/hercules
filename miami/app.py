@@ -5,6 +5,7 @@ import calendar
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 from datetime import datetime
 from passlib.hash import md5_crypt
+from sqlite3 import OperationalError
 
 from util import dbCommands as db
 
@@ -24,7 +25,20 @@ def is_logged_in():
 @app.route("/", methods = ["POST", "GET"])
 def home():
     if( is_logged_in() ):
-        return render_template("home.html")
+        userId = session["id"]
+        day = datetime.now().day
+        month = datetime.now().month
+        month_name = calendar.month_abbr[month]
+        year = datetime.now().year
+        date = str(day) + "-" + month_name + "-" + str(year)
+        template_stored = db.get_template_from_date(userId, date)
+        if template_stored:
+            template = db.get_template(userId, template_stored)
+            print("template_stored", template)
+            return render_template("home.html", task = template, month=month_name, date=day, year=year)
+        else:
+            flash("No template stored for " + date)
+            return render_template("home.html")
     else:
         return render_template("login.html")
 
@@ -76,32 +90,39 @@ def logout():
     session.pop("id")
     return redirect(url_for("home"))
 
-@app.route("/submit_form",methods=["POST","GET"])
-def sub_cal():
-    curr_month = datetime.now().month
-    curr_year = datetime.now().year
-    curr_table = calendar.monthcalendar(curr_year, curr_month)
-    month_name = calendar.month_abbr[curr_month]
-    if request.method == 'POST':
-        userId=session["id"]
-        print(request.form)
-        name = request.form["tempname"]
-        dates = request.form.getlist("selected")
-        print(dates)
-        counter = 0
-        while counter < len(dates):
-            db.add_Calender(userId, dates[counter], name);
-            counter += 1
-        return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name)
-    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
+@app.route("/add_to_cal", methods=["POST","GET"])
+def add_to_cal():
+    userId=session["id"]
+    print(request.form)
+    name = request.form["tempname"]
+    dates = request.form.getlist("selected")
+    print(dates)
+    counter = 0
+    while counter < len(dates):
+        db.add_Calender(userId, dates[counter], name)
+        counter += 1
+    return redirect(url_for("home"))
 
-
+#called when you submit a template
 @app.route("/calendar",methods=["POST","GET"])
 def cal():
+    userId=session["id"]
+    listotemps = []
     curr_month = datetime.now().month
     curr_year = datetime.now().year
     curr_table = calendar.monthcalendar(curr_year, curr_month)
     month_name = calendar.month_abbr[curr_month]
+    curr_year = str(curr_year)
+    nameDict = {}
+    for row in curr_table:
+        for day in row:
+            date = str(day) + "-" + month_name + "-" + curr_year
+            print(date)
+            if (db.get_template_from_date(userId,date)):
+                nameDict[date] = db.get_template_from_date(userId,date)
+    print("namedict:")
+    print(nameDict)
+
     if request.method == 'POST':
         userId=session["id"]
         name = request.form["tempname"]
@@ -131,13 +152,16 @@ def cal():
             counter +=1
         counter = 0
         lists = []
+        print("ADDING TO TEMPLATES")
         while counter < len(task):
             lists.append([userId, name, task[counter], start[counter], end[counter]])
             counter += 1
         db.add_All_to_template(lists)
         print(lists)
-        return render_template("calendar.html", month=month_name,year=curr_year,table=curr_table)
-    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table)
+        dates = request.form.getlist("selected")
+        return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name,dict = nameDict)
+    #when you click on the calendar tab
+    return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table, dict = nameDict)
 
 @app.route("/templates", methods=["POST", "GET"])
 def templates():
