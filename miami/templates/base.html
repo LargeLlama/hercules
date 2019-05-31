@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     {% block head %}
     <link rel="stylesheet" type="text/css" href="../static/miamiultras.css">
-    <link rel="stylesheet" type="text/css" href="../static/calendar.css">
+    {% block css %} {% endblock %}<link rel="stylesheet" type="text/css" href="../static/calendar.css">
     <link rel="stylesheet" type="text/css" href="../static/home.css">
     <title>{% block title %} {% endblock %}</title>
     {% endblock %}

@@ -173,6 +173,14 @@ def templates():
 def create():
     return render_template("create.html")
 
+@app.route("/disp_temp", methods=["POST", "GET"])
+def disp_temp():
+    userId=session["id"]
+    if request.method == 'POST':
+        template_name = request.form.get("selected")
+        template = db.get_template(userId, template_name)
+    return render_template("tempcalendar.html", task=template, name=template_name)
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
