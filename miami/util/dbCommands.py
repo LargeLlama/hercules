@@ -16,8 +16,12 @@ def add_Calender(user_id,date,schedule_name):
     '''adds a calender entry for a user'''
     db = sqlite3.connect(DB_FILE)
     c= db.cursor()
-    command = "INSERT INTO calender(user_id,date,schedule_name)VALUES(?,?,?);"
-    c.execute(command,(user_id,date,schedule_name))
+    existing = get_template_from_date(user_id,date)
+    if existing == "":
+        command = "INSERT INTO calender(user_id,date,schedule_name)VALUES(?,?,?);"
+        c.execute(command,(user_id,date,schedule_name))
+    else:
+        replace_template(user_id, date, schedule_name);
     db.commit()
     db.close()
 
@@ -87,7 +91,23 @@ def get_template(user_id,name):
     #should return as a list of tuples
     return template
 
+def replace_template(user_id, date, name):
+    '''removes old template from the date and inserts a new one'''
+    db.sqlite3.connect(DB_FILE)
+    c = db.cursor()
 
+    command = "SELECT date FROM calender WHERE user_id = ? and name = ?"
+    c. execute(command(user_id, name))
+    dates = c.fetchall()
+    dates.remove(date)
+
+    command = "DELETE from calender WHERE user_id = ? AND date LIKE ?"
+    date = "%" + date + "%"
+    c.execute(command(user_id, date))
+
+    command = "INSERT INTO calender(user_id,date,schedule_name)VALUES(?,?,?);"
+    c.execute(command(user_id, dates, name))
+    db.close()
 
 def get_all_templates(user_id):
     #gets all individual template namses from the templates table based on id of user
