@@ -134,6 +134,10 @@ huiminW -- 2019-05-30 9:50
 addisonH -- 2019-05-30 13:58
 --------------------------------------------------------------
 - added removing of tasks
-
-
-
+==============================================================
+huiminW -- 2019-05-30 21:35
+--------------------------------------------------------------
+- Add functionality to calender page. When user clicks on cell,
+  they are redirected to the template
+- Add background coloring to indicate what dates have been selected
+  to apply templates to
