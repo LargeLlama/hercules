@@ -26,9 +26,7 @@ Home
         {{ loop.index0 }}
     </td>
     {% for col in row %}
-    <td>
-      {{col}}
-    </td>
+    <td name="{{ loop.index0 }}">{{col}}</td>
     {% endfor %}
   </tr>
   {% endfor %}
@@ -41,8 +39,8 @@ Home
     </thead>
     <tbody>
         <tr>
-            <td class="home time" value="time_into"> 99 </td>
-            <td class="home time" value="time_left"> 99 </td>
+            <td class="home time" value="time_into" id="time_into"> 99 </td>
+            <td class="home time" value="time_left" id="time_left"> 99 </td>
         </tr>
         <tr>
             <td class="home"> minutes into </td>

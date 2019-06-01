@@ -141,3 +141,12 @@ huiminW -- 2019-05-30 21:35
   they are redirected to the template
 - Add background coloring to indicate what dates have been selected
   to apply templates to
+==============================================================
+peterC -- 2019-05-21 13:36
+Stuff I forgot to put an entry for :
+-timer on home page works
+-templates applied to date display on calendar
+New stuff:
+Adjusted timer to display minutes into task
+and minutes until end of task
+==============================================================
