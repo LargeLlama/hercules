@@ -14,7 +14,6 @@ app = Flask(__name__)
 
 app.secret_key = "\x16\xc6w\x1c.!-\xb5\x15\x82u\xbe\x01\xc5?[\x18\n~\x891_\xa3\x9a}\xe6\x13\xea~\xc1\x92\xb8"
 
-#the following is for the ajax timer
 curr_hr = datetime.now().hour
 curr_min = datetime.now().minute
 curr_sec = datetime.now().second
@@ -96,10 +95,13 @@ def add_to_cal():
     print(request.form)
     name = request.form["tempname"]
     dates = request.form.getlist("selected")
-    print(dates)
+    dates = dates[0].split(",")
+    print("LENGTHHH:", len(dates))
     counter = 0
     while counter < len(dates):
+        print("adding ", dates[counter])
         db.add_Calender(userId, dates[counter], name)
+        print("added")
         counter += 1
     return redirect(url_for("home"))
 
