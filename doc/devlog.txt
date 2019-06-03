@@ -150,3 +150,9 @@ New stuff:
 Adjusted timer to display minutes into task
 and minutes until end of task
 ==============================================================
+huiminW -- 2019-06-03 15:04
+--------------------------------------------------------------
+- When users make a new template and add it to cell already
+  with a template. It will replace that cell with the new 
+  template
+==============================================================
