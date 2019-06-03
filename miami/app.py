@@ -95,10 +95,13 @@ def add_to_cal():
     print(request.form)
     name = request.form["tempname"]
     dates = request.form.getlist("selected")
-    print(dates)
+    dates = dates[0].split(",")
+    print("LENGTHHH:", len(dates))
     counter = 0
     while counter < len(dates):
+        print("adding ", dates[counter])
         db.add_Calender(userId, dates[counter], name)
+        print("added")
         counter += 1
     return redirect(url_for("home"))
 

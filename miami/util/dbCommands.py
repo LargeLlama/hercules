@@ -15,9 +15,10 @@ def add_user(username,password_hash):
 def add_Calender(user_id,date,schedule_name):
     '''adds a calender entry for a user'''
     db = sqlite3.connect(DB_FILE)
-    c= db.cursor()
+    c = db.cursor()
     existing = get_template_from_date(user_id,date)
-    if existing == "":
+    print("existing", existing)
+    if not existing:
         command = "INSERT INTO calender(user_id,date,schedule_name)VALUES(?,?,?);"
         c.execute(command,(user_id,date,schedule_name))
     else:
@@ -93,20 +94,15 @@ def get_template(user_id,name):
 
 def replace_template(user_id, date, name):
     '''removes old template from the date and inserts a new one'''
-    db.sqlite3.connect(DB_FILE)
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
-    command = "SELECT date FROM calender WHERE user_id = ? and name = ?"
-    c. execute(command(user_id, name))
-    dates = c.fetchall()
-    dates.remove(date)
-
-    command = "DELETE from calender WHERE user_id = ? AND date LIKE ?"
-    date = "%" + date + "%"
-    c.execute(command(user_id, date))
+    command = "DELETE from calender WHERE user_id = ? AND date = ?"
+    c.execute(command, (user_id, date))
 
     command = "INSERT INTO calender(user_id,date,schedule_name)VALUES(?,?,?);"
-    c.execute(command(user_id, dates, name))
+    c.execute(command, (user_id, date, name))
+    db.commit()
     db.close()
 
 def get_all_templates(user_id):
@@ -124,12 +120,9 @@ def get_template_from_date(user_id,date):
     '''gets a template from the calender based on date given'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    print(date)
-    command = "SELECT schedule_name FROM calender WHERE user_id = ? AND date LIKE ?;"
-    date = "%" + date + "%"
+    command = "SELECT schedule_name FROM calender WHERE user_id = ? AND date = ?;"
     c.execute(command,(user_id, date))
     name = c.fetchall()
-    print("NAME", name)
     if name:
         name = name[0][0]
     return name
