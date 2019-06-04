@@ -169,7 +169,7 @@ def templates():
     names = db.get_all_templates(userId)
     counter = 0
     while counter < len(names):
-        names[counter] = names[counter][2:len(names[counter])-1]
+        names[counter]=str(names[counter])[2:len(str(names[counter]))-3]
         counter +=1
     return render_template("template.html",templates=names)
 

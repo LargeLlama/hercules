@@ -3,11 +3,16 @@
 Templates
 {% endblock %}
 {% block content %}
+<form method="POST" id="cal_tem" action="/disp_temp">
+<input type="hidden" id="selected" name="selected"> </input>
 <div class="container">
-<div class="templates">
-{% for template in templates %}
-{{template}}
-{% endfor %}
+  <div class="templates">
+    <table>
+      {% for template in templates %}
+      <tr> <td>
+{{template}} </td> </tr>
+      {% endfor %}
+      </table>
 </div>
 <div id="template-button">
 <form action="/create" method="POST">
@@ -18,4 +23,7 @@ Templates
 </div>
 <br>
 </div>
+{% endblock %}
+{% block js %}
+<script src="static/dispcalendar.js"></script>
 {% endblock %}

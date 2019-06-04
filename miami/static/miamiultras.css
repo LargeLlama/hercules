@@ -104,4 +104,8 @@ td,th,table {
     color:#738290;
 }
 
-
+.templates {
+    width:50%;
+    display:inline-block;
+    text-align:center;
+}
