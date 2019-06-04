@@ -126,42 +126,47 @@ def cal():
     print(nameDict)
 
     if request.method == 'POST':
-        userId=session["id"]
-        name = request.form["tempname"]
-        task = request.form.getlist("task[]")
-        start = request.form.getlist("start[]")
-        end = request.form.getlist("end[]")
-        counter = 0
-        while counter < len(start):
-            if start[0] > end[0]:
-                flash("Start time can't be after end time!")
+        try:
+            userId=session["id"]
+            name = request.form["tempname"]
+            task = request.form.getlist("task[]")
+            start = request.form.getlist("start[]")
+            end = request.form.getlist("end[]")
+            counter = 0
+            while counter < len(start):
+                if start[0] > end[0]:
+                    flash("Start time can't be after end time!")
+                    return redirect(url_for("create"))
+                counter +=1
+            tempS = start.copy()
+            tempS.sort()
+            tempE = end.copy()
+            tempE.sort()
+            print(start)
+            print(tempS)
+            if (start != tempS):
+                flash("Please sort your tasks in ascending order")
                 return redirect(url_for("create"))
-            counter +=1
-        tempS = start.copy()
-        tempS.sort()
-        tempE = end.copy()
-        tempE.sort()
-        print(start)
-        print(tempS)
-        if (start != tempS):
-            flash("Please sort your tasks in ascending order")
-            return redirect(url_for("create"))
-        counter = 0
-        while counter < len(tempE) -1:
-            if end[counter] > start[counter+1]:
-                flash("Tasks can't overlap!")
-                return redirect(url_for("create"))
-            counter +=1
-        counter = 0
-        lists = []
-        print("ADDING TO TEMPLATES")
-        while counter < len(task):
-            lists.append([userId, name, task[counter], start[counter], end[counter]])
-            counter += 1
-        db.add_All_to_template(lists)
-        print(lists)
-        dates = request.form.getlist("selected")
-        return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name,dict = nameDict)
+            counter = 0
+            while counter < len(tempE) -1:
+                if end[counter] > start[counter+1]:
+                    flash("Tasks can't overlap!")
+                    return redirect(url_for("create"))
+                counter +=1
+            counter = 0
+            lists = []
+            print("ADDING TO TEMPLATES")
+            while counter < len(task):
+                lists.append([userId, name, task[counter], start[counter], end[counter]])
+                counter += 1
+            db.add_All_to_template(lists)
+            print(lists)
+            dates = request.form.getlist("selected")
+            return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name,dict = nameDict)
+        except:
+            name = request.form["template"]
+            return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name,dict = nameDict)
+            
     #when you click on the calendar tab
     return render_template("calendar.html", month = month_name, year = curr_year, table = curr_table, dict = nameDict)
 

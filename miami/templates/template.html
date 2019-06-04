@@ -7,13 +7,16 @@ Templates
 <input type="hidden" id="selected" name="selected"> </input>
 <div class="container">
   <div class="templates">
+    <center>
     <table>
       {% for template in templates %}
-      <tr> <td>
+      <tr> <td class="highlight" id={{template}}>
 {{template}} </td> </tr>
       {% endfor %}
-      </table>
-</div>
+    </table>
+    </center>
+  </div>
+  </form>
 <div id="template-button">
 <form action="/create" method="POST">
   <div id="button">
@@ -25,5 +28,5 @@ Templates
 </div>
 {% endblock %}
 {% block js %}
-<script src="static/dispcalendar.js"></script>
+<script src="static/dispcal.js"></script>
 {% endblock %}

@@ -109,3 +109,7 @@ td,th,table {
     display:inline-block;
     text-align:center;
 }
+
+.highlight:hover {
+    background-color: #e0cfb5;
+}

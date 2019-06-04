@@ -31,5 +31,14 @@ Home
   </tr>
   {% endfor %}
 </table>
+<br>
+<center>
+<form action="/calendar" method="POST">
+  <div id="button">
+    <input type="hidden" value={{name}} name="template">
+    <input type="submit" class="btn btn-primary" value="Add Template to Calendar">
+  </div>
+</form>
+</center>
 </div>
 {% endblock %}
