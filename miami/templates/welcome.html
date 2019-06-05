@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome
+{% endblock %}
+{% block style %}
+<style>
+    body {
+        background-image: url("../static/background.png");
+    }
+</style>
+{% endblock %}
+{% block nav %}
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="mainNav">
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto">
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">Hello!</h1>
+      <p class="lead">We are Miami Ultras and we've made a revolutionary application to help you get your life together!</p>
+      <hr class="my-4">
+      <p>Our app, Hercules, is a combination of a timer app and a calendar app. Users make the schedule, apply it to a calender, and then everyday, there is a timer that counts down to the next task!</p>
+      <center>
+      <a class="btn btn-primary" href="/login" role="button">Login/Sign Up Here</a>
+      </center>
+    </div>
+</div>
+{% endblock %}
+
