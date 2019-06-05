@@ -22,8 +22,8 @@ var x = setInterval(function() {
   var minute = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
   var second = Math.floor((now % (1000 * 60)) / 1000);
   //just in case there is no task at this time
-  var into = 0;
-  var until = 0;
+  var into = -1;
+  var until = -1;
   for (var x = 0;x < startTimes.length;x++){
     //definitely before the current time
     if (parseInt(startTimes[x].innerHTML.substr(0,2)) < hour ){
@@ -72,6 +72,10 @@ var x = setInterval(function() {
   //turns it into a string
   if (second < 10){
     second = "0" + second;
+  }
+  if (into < 0){
+    into = "downtime";
+    until = "downtime";
   }
 
   inTime.innerHTML = into;
