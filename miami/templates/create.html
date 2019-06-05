@@ -15,7 +15,7 @@ Create
   <table class="table" id="temp">
     <tr>
       <td colspan="3" style="text-align:center;">
-	<input type="text" name="tempname" placeholder="template name" style="width:50%; text-align:center;">
+	<input type="text" name="tempname" placeholder="template name" style="width:50%; text-align:center;" value={{name}}>
       </td>
     </tr>
     <tr>
@@ -29,6 +29,19 @@ Create
 	End Time
       </th>
     </tr>
+    {% for row in task %}
+    <tr>
+      <td>
+	<div class="remove"> <input type="text" name="task[]" value={{row[0]}}>
+      </div> </td>
+      <td>
+	<input type="time" name="start[]" value={{row[1]}} style="text-align:center;">
+      </td>
+      <td>
+	<input type="time" name="end[]" value={{row[2]}} style="text-algin:center;">
+	</td>
+    </tr>
+    {% endfor %}
   </table>
   <div class="center">
   <button type="submit" class="btn btn-primary"> Create </button>

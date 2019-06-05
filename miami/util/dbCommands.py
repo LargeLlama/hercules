@@ -112,7 +112,12 @@ def get_all_templates(user_id):
     command = "SELECT name FROM templates WHERE user_id = ?;"
     c.execute(command,(user_id,))
     templates = c.fetchall()
-    return templates
+    temp = []
+    for name in templates:
+        if name not in temp:
+            temp.append(name)
+    print(temp)
+    return temp
 
 
 

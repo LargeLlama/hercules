@@ -165,6 +165,11 @@ addisonH -- 2019-06-03 22:38
 - users can now view their templates from the templates page
 - users can now add a template to the calendar from the templates page
 ==============================================================
+addisonH -- 2019-06-05 14:02
+--------------------------------------------------------------
+- you can now edit templates
+- template names do not repeat
+==============================================================
 huiminW -- 2019-06-05 14:05
 --------------------------------------------------------------
 - Added robustness when user tries to access url they can't
