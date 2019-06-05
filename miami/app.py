@@ -198,7 +198,6 @@ def templates():
 
 @app.route("/create",methods=["POST","GET"])
 def create():
-<<<<<<< HEAD
     if( is_logged_in() ):
         if request.method == 'POST':   
             userId=session["id"]
