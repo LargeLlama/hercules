@@ -23,6 +23,8 @@ def is_logged_in():
 
 @app.route("/")
 def welcome():
+    if(is_logged_in()):
+        redirect(url_for("home"))
     return render_template("welcome.html")
 
 @app.route("/login", methods = ["POST", "GET"])
@@ -142,6 +144,18 @@ def cal():
                 start = request.form.getlist("start[]")
                 end = request.form.getlist("end[]")
                 counter = 0
+                count = 0
+                tempNames = db.get_all_templates(userId)
+                if len(task)==0 or len(start) == 0 or len(end) == 0:
+                    flash("Missing start time, end time or task name")
+                    return redirect(url_for("create"))
+                while count < len(tempNames):
+                    tempNames[count] = str(tempNames[count])[2:len(str(tempNames[count]))-3]
+                    count +=1
+                    print(tempNames)
+                if name in tempNames:
+                    flash("template name already in use")
+                    return redirect(url_for("create"))
                 while counter < len(start):
                     if start[0] > end[0]:
                         flash("Start time can't be after end time!")
@@ -169,7 +183,6 @@ def cal():
                     lists.append([userId, name, task[counter], start[counter], end[counter]])
                     counter += 1
                 db.add_All_to_template(lists)
-                print(lists)
                 dates = request.form.getlist("selected")
                 return render_template("formcalendar.html", month=month_name,year=curr_year,table=curr_table,template = name,dict = nameDict)
             except:
