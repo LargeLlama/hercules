@@ -174,3 +174,8 @@ huiminW -- 2019-06-05 14:05
 --------------------------------------------------------------
 - Added robustness when user tries to access url they can't
 - Added welcome page
+==============================================================
+addisonH -- 2019-06-06 20:41
+--------------------------------------------------------------
+-user can't make empty templastes
+-styling improvements
