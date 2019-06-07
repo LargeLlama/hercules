@@ -3,12 +3,21 @@
 Templates
 {% endblock %}
 {% block content %}
+<form method="POST" id="cal_tem" action="/disp_temp">
+<input type="hidden" id="selected" name="selected"> </input>
 <div class="container">
-<div class="templates">
-{% for template in templates %}
-{{template}}
-{% endfor %}
-</div>
+  <div class="templates">
+    <center>
+      <table style="width:100%; border:3px solid #A1B5D8;">
+	<th colspan="2"> Templates </th>
+      {% for template in templates %}
+      <tr> <td style="border:3px solid #A1B5D8">{{loop.index}} </td>  <td style="border:3px solid #A1B5D8" class="highlight" id={{template}}>
+{{template}} </td> </tr>
+      {% endfor %}
+    </table>
+    </center>
+  </div>
+  </form>
 <div id="template-button">
 <form action="/create" method="POST">
   <div id="button">
@@ -18,4 +27,7 @@ Templates
 </div>
 <br>
 </div>
+{% endblock %}
+{% block js %}
+<script src="static/dispcal.js"></script>
 {% endblock %}

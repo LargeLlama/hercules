@@ -134,6 +134,48 @@ huiminW -- 2019-05-30 9:50
 addisonH -- 2019-05-30 13:58
 --------------------------------------------------------------
 - added removing of tasks
-
-
-
+==============================================================
+huiminW -- 2019-05-30 21:35
+--------------------------------------------------------------
+- Add functionality to calender page. When user clicks on cell,
+  they are redirected to the template
+- Add background coloring to indicate what dates have been selected
+  to apply templates to
+==============================================================
+peterC -- 2019-05-21 13:36
+Stuff I forgot to put an entry for :
+-timer on home page works
+-templates applied to date display on calendar
+New stuff:
+Adjusted timer to display minutes into task
+and minutes until end of task
+==============================================================
+huiminW -- 2019-06-03 15:04
+--------------------------------------------------------------
+- When users make a new template and add it to cell already
+  with a template. It will replace that cell with the new 
+  template
+==============================================================
+huiminW -- 2019-06-03 15:25
+--------------------------------------------------------------
+- Added logo
+==============================================================
+addisonH -- 2019-06-03 22:38
+--------------------------------------------------------------
+- users can now view their templates from the templates page
+- users can now add a template to the calendar from the templates page
+==============================================================
+addisonH -- 2019-06-05 14:02
+--------------------------------------------------------------
+- you can now edit templates
+- template names do not repeat
+==============================================================
+huiminW -- 2019-06-05 14:05
+--------------------------------------------------------------
+- Added robustness when user tries to access url they can't
+- Added welcome page
+==============================================================
+addisonH -- 2019-06-06 20:41
+--------------------------------------------------------------
+-user can't make empty templastes
+-styling improvements

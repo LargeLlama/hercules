@@ -15,9 +15,14 @@ def add_user(username,password_hash):
 def add_Calender(user_id,date,schedule_name):
     '''adds a calender entry for a user'''
     db = sqlite3.connect(DB_FILE)
-    c= db.cursor()
-    command = "INSERT INTO calender(user_id,date,schedule_name)VALUES(?,?,?);"
-    c.execute(command,(user_id,date,schedule_name))
+    c = db.cursor()
+    existing = get_template_from_date(user_id,date)
+    print("existing", existing)
+    if not existing:
+        command = "INSERT INTO calender(user_id,date,schedule_name)VALUES(?,?,?);"
+        c.execute(command,(user_id,date,schedule_name))
+    else:
+        replace_template(user_id, date, schedule_name);
     db.commit()
     db.close()
 
@@ -87,7 +92,18 @@ def get_template(user_id,name):
     #should return as a list of tuples
     return template
 
+def replace_template(user_id, date, name):
+    '''removes old template from the date and inserts a new one'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
 
+    command = "DELETE from calender WHERE user_id = ? AND date = ?"
+    c.execute(command, (user_id, date))
+
+    command = "INSERT INTO calender(user_id,date,schedule_name)VALUES(?,?,?);"
+    c.execute(command, (user_id, date, name))
+    db.commit()
+    db.close()
 
 def get_all_templates(user_id):
     #gets all individual template namses from the templates table based on id of user
@@ -96,7 +112,12 @@ def get_all_templates(user_id):
     command = "SELECT name FROM templates WHERE user_id = ?;"
     c.execute(command,(user_id,))
     templates = c.fetchall()
-    return templates
+    temp = []
+    for name in templates:
+        if name not in temp:
+            temp.append(name)
+    print(temp)
+    return temp
 
 
 
@@ -104,12 +125,9 @@ def get_template_from_date(user_id,date):
     '''gets a template from the calender based on date given'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    print(date)
-    command = "SELECT schedule_name FROM calender WHERE user_id = ? AND date LIKE ?;"
-    date = "%" + date + "%"
+    command = "SELECT schedule_name FROM calender WHERE user_id = ? AND date = ?;"
     c.execute(command,(user_id, date))
     name = c.fetchall()
-    print("NAME", name)
     if name:
         name = name[0][0]
     return name
