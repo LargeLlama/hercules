@@ -33,16 +33,19 @@
 5. Run the following command in the miami/ folder while your virtual environment is active  
 
     `$ pip install -r requirements.txt`
+    
+6. Make a data directory in the miami/ folder to store the databases
+    `$ mkdir data`
 
-6. Run the following command from the miami/ folder to build the initial databases
+7. Run the following command from the miami/ folder to build the initial databases
 
     `$ python util/makeData.py`
 
-7. Run the app.py file  
+8. Run the app.py file  
 
     `$ python app.py`
 
-8. Navigate to [here](http://127.0.0.1:5000/) to see the app in action!
+9. Navigate to [here](http://127.0.0.1:5000/) to see the app in action!
 
 ## As Apache App on Server
 
