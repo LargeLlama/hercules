@@ -35,6 +35,7 @@
     `$ pip install -r requirements.txt`
     
 6. Make a data directory in the miami/ folder to store the databases
+
     `$ mkdir data`
 
 7. Run the following command from the miami/ folder to build the initial databases
