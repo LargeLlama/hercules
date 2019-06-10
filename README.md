@@ -3,6 +3,10 @@
 ### Period 8
 ### Rubin P., Addison H., Hui Min W., and Peter C.
 
+## Demo Video 
+
+--->[here](https://youtu.be/A1RrVG25mKg) 
+
 ### Launch Instructions
 
 ## From Local Machine (As Flask App)
