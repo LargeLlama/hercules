@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% set msgs = get_flashed_messages() %}
+    {% for each in msgs %}
+        {{each}}<br>
+    {% endfor %}
+<table class="table" style="float:left">
+    {% if month is defined %}
+        <tr>
+            <th scope="col" colspan="4"><em>{{month}}&nbsp;{{date}},&nbsp;{{year}}</em></th>
+        </tr>
+        <tr>
+            <th><em>#</em></th>
+            <th><em>Task Name</em></th>
+            <th><em>Start Time</em></th>
+            <th><em>End Time</em></th>
+        </tr>
+    {% endif %}
+    {% for row in task %}
+  <tr>
+    <td>
+        {{ loop.index0 }}
+    </td>
+    {% for col in row %}
+    <td name="{{ loop.index0 }}">{{col}}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+<table class="table table-bordered table-dark" style="float:right">
+    <thead>
+        <tr>
+            <th scope="col" colspan="2">Task</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="home time" value="time_into" id="time_into"> 99 </td>
+            <td class="home time" value="time_left" id="time_left"> 99 </td>
+        </tr>
+        <tr>
+            <td class="home"> minutes into </td>
+            <td class="home"> minutes left </td>
+        </tr>
+        <tr>
+            <td class="home" colspan="2" id="timer"> 99:99:99 </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+{% endblock %}
+{% block js %}
+<script src="static/timer.js"></script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+Calendar
+{% endblock %}
+{% block content %}
+<div class="container">
+<form method="POST" id="cal_tem" action="/disp_temp">
+<input type="hidden" id="selected" name="selected"> </input>
+<table class="table table-dark table-bordered">
+    <thead>
+        <tr>
+            <th scope="col" colspan="7"><em>{{month}}&emsp;{{year}}</em></th>
+        </tr>
+        <tr>
+            <th scope="col">Sunday</th>
+            <th scope="col">Monday</th>
+            <th scope="col">Tuesday</th>
+            <th scope="col">Wednesday</th>
+            <th scope="col">Thursday</th>
+            <th scope="col">Friday</th>
+            <th scope="col">Saturday</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        {% for row in table %}
+            <tr>
+                {% for day in row %}
+                    {% if day %}
+                        <td class="calendar" id="{{day}}-{{month}}-{{year}}" value="{{dict[day|string + "-" + month + "-" + year]}}"> {{day}}
+                        {{dict[day|string + "-" + month + "-" + year]}}
+                        <br> <br> </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</form>
+</div>
+{% endblock %}
+{% block js %}
+<script src="static/dispcalendar.js"></script>
+{% endblock %}
