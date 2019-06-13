@@ -1,6 +1,7 @@
 #util commands for messing with the database
 import sqlite3
-DB_FILE ="data/data.db"
+DB_FILE ="/var/www/hercules/hercules/data/data.db"
+
 #----------------when you want to add data to the database------------------------------
 #adds to the users table
 def add_user(username,password_hash):
