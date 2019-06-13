@@ -34,15 +34,15 @@
   
       `$ deactivate`  
     
-5. Run the following command in the miami/ folder while your virtual environment is active  
+5. Run the following command in the hercules/ folder while your virtual environment is active  
 
     `$ pip install -r requirements.txt`
     
-6. Make a data directory in the miami/ folder to store the databases
+6. Make a data directory in the hercules/ folder to store the databases
 
     `$ mkdir data`
 
-7. Run the following command from the miami/ folder to build the initial databases
+7. Run the following command from the hercules/ folder to build the initial databases
 
     `$ python util/makeData.py`
 
@@ -56,19 +56,19 @@
 
 1. Clone the repository with the following command in the `/var/www/` directory
 
-    `$ git clone https://github.com/LargeLlama/Miami-Ultras miami`
+    `$ git clone https://github.com/LargeLlama/Miami-Ultras hercules`
 
-2. Run the following commands on the folder `miami`
+2. Run the following commands on the folder `hercules`
 
-    `$ chgrp -R www-data miami`
+    `$ chgrp -R www-data hercules`
     
-    `$ chmod -R g+w miami`
+    `$ chmod -R g+w hercules`
     
      (This allows for read and write permissions by Apache)
   
 3. Move the `.conf` file with the following command
 
-    `$ mv /var/www/miami/miami.conf /etc/apache2/sites-available/` 
+    `$ mv /var/www/hercules/hercules.conf /etc/apache2/sites-available/` 
 
 
 4. Enable the site in Apache
